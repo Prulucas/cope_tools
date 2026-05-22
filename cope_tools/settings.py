@@ -20,7 +20,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 SECRET_KEY = 'django-insecure-!t3mz^qew-p7@l_24&==08u-9oy1o@qggz!7!*)6ln*7*o#3a4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False") == "True"
+DEBUG = "True"
 
 ALLOWED_HOSTS = [
     'cope-tools.onrender.com',
