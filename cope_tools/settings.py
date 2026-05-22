@@ -20,7 +20,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 SECRET_KEY = 'django-insecure-!t3mz^qew-p7@l_24&==08u-9oy1o@qggz!7!*)6ln*7*o#3a4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = "True"
+DEBUG = "False"
 
 ALLOWED_HOSTS = [
     'cope-tools.onrender.com',
@@ -63,7 +63,8 @@ ROOT_URLCONF = 'cope_tools.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'Templates')],
+        # Usando o BASE_DIR / 'Templates' (garante que bate com a tua pasta com 'T' maiúsculo)
+        'DIRS': [BASE_DIR / 'Templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
