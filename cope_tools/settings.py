@@ -22,7 +22,11 @@ SECRET_KEY = 'django-insecure-!t3mz^qew-p7@l_24&==08u-9oy1o@qggz!7!*)6ln*7*o#3a4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = [".render.com", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ['cope-tools.onrender.com',
+                 '.render.com',
+                 'localhost',
+                 '127.0.0.1',
+                 ]
 
 
 # Application definition
