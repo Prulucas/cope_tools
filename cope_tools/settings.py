@@ -4,15 +4,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-STATIC_URL = "static/"
-
-STATICFILES_DIRS = [
-    os.path.join(
-        BASE_DIR, "static"
-    ),
-]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
@@ -20,7 +11,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 SECRET_KEY = 'django-insecure-!t3mz^qew-p7@l_24&==08u-9oy1o@qggz!7!*)6ln*7*o#3a4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = "False"
+
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'cope-tools.onrender.com',
@@ -49,6 +41,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # Excelente para servir arquivos estáticos no Render
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -60,11 +53,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'cope_tools.urls'
 
+TEMPLATE_DIR_UPPER = os.path.join(BASE_DIR, 'Templates')
+TEMPLATE_DIR_LOWER = os.path.join(BASE_DIR, 'templates')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # Usando o BASE_DIR / 'Templates' (garante que bate com a tua pasta com 'T' maiúsculo)
-        'DIRS': [BASE_DIR / 'Templates'],
+        'DIRS': [TEMPLATE_DIR_UPPER, TEMPLATE_DIR_LOWER],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,4 +124,6 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
+# Configuração do WhiteNoise para armazenar em cache de forma otimizada
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
