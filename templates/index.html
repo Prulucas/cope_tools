@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+    <title>Converter Maiúsculas e Minúsculas</title>
+</head>
+<body>
+    
+    <div class="container">
+        <form id="conversorForm">
+                <div class="mini-container">
+                    <label for="textoInput" class="form-label">Texto para converter em Maiúsculo:</label><br><br>
+                    <input type="text" id="textoInput" class="form-input" placeholder="Ex: Teste" required>
+                </div>
+                <br>
+            <button type="submit" class="btn-converter">Converter</button>
+        </form>
+        <br>
+        <div id="resultadoContainer" class="result-upper">
+            <h6 class="result-title">Resultado da API:</h6>
+            <h3 id="textoResultado" class="result-text"></h3>
+        </div>
+    </div>
+
+    
+            
+        
+    
+    <footer class="footer">
+        <h1>&copy; 2026 Desenvolvido por Prulucas  </h1>
+    </footer>
+
+    <script>
+        document.getElementById('conversorForm').addEventListener('submit', async function(e) {
+            e.preventDefault(); // Impede o formulário de recarregar a página
+            
+            const texto = document.getElementById('textoInput').value;
+            
+            try {
+                // Faz a chamada assíncrona para o endpoint do Django
+                const response = await fetch('/api/upper/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ texto: texto }) // Envia o JSON com a chave "texto"
+                });
+
+                if (response.ok) {
+                    const dados = await response.json();
+                    
+                    // CORREÇÃO: Alvo alterado para 'textoResultado' e chave alterada para 'dados.resultado'
+                    document.getElementById('textoResultado').textContent = dados.resultado;
+                    document.getElementById('resultadoContainer').classList.remove('d-none');
+                } else {
+                    alert('Erro ao comunicar com a API. Status: ' + response.status);
+                }
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+                alert('Erro de conexão com o servidor.');
+            }
+        });
+    </script>
+</body>
+</html>
