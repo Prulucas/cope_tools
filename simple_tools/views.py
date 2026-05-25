@@ -21,6 +21,19 @@ def api_send_to_upper(request):
         'resultado': processed_text
     })
 
+
+@csrf_exempt
+@api_view(['POST'])
+def api_send_to_lower(request):
+    initial_text = request.data.get('texto', '')
+
+    processed_text = str(initial_text).lower()
+
+    return Response({
+        'original': initial_text,
+        'resultado': processed_text
+    })
+
 # View para renderizar a página index
 
 

@@ -7,4 +7,5 @@ urlpatterns = [
 
     # Rota da API REST
     path('api/upper/', views.api_send_to_upper, name='api_upper'),
+    path('api/lower/', views.api_send_to_lower, name='api_lower'),
 ]
