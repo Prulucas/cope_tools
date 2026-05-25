@@ -57,6 +57,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",
+    "https://cope-front.vercel.app",
 ]
 
 ROOT_URLCONF = 'cope_tools.urls'
