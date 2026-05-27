@@ -30,7 +30,8 @@ A API expõe os seguintes serviços (comunicação via JSON):
     "type": "MAIÚSCULAS"
   }
 
-  * **Rota:** `/api/lower/`
+
+* **Rota:** `/api/lower/`
 * **Método:** `POST`
 * **Payload Esperado:**
   ```json
